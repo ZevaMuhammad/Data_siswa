@@ -1,0 +1,101 @@
+<odoo>
+
+    <record id="view_data_siswa_tree" model="ir.ui.view">
+        <field name="name">data.siswa.tree</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nomor_induk"/>
+                <field name="nama"/>
+                <field name="jenis_kelamin"/>
+                <field name="tanggal_lahir"/>
+                <field name="asal_sekolah"/>
+                <field name="alamat"/>
+                <field name="kota_asal"/>
+                <field name="tahun_kelahiran"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_data_siswa_graph" model="ir.ui.view">
+        <field name="name">data.siswa.graph</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <graph string="Siswa Berdasarkan Asal Sekolah dan Tahun Kelahiran" type="bar">
+                <field name="asal_sekolah" type="row"/>
+                <field name="tahun_kelahiran" type="col"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_data_siswa_search" model="ir.ui.view">
+        <field name="name">data.siswa.search</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="nomor_induk" string="Nomor Induk"/>
+                <field name="nama" string="Nama"/>
+                <field name="asal_sekolah" string="Asal Sekolah"/>
+                <field name="tahun_kelahiran" string="Tahun Kelahiran"/>
+                <filter string="Laki-laki" name="laki_laki" domain="[('jenis_kelamin','=','laki_laki')]"/>
+                <filter string="Perempuan" name="perempuan" domain="[('jenis_kelamin','=','perempuan')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="data_siswa_action" model="ir.actions.act_window">
+        <field name="name">Data Siswa</field>
+        <field name="res_model">data.siswa</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="view_id" ref="view_data_siswa_tree"/>
+        <field name="search_view_id" ref="view_data_siswa_search"/>
+    </record>
+
+    <menuitem id="siswa_menu_root" name="Aplikasi Siswa">
+        <menuitem id="siswa_master_data_menu" name="List Data">
+            <menuitem 
+                id="data_siswa_menu_action" 
+                action="data_siswa_action"
+            />
+        </menuitem>
+    </menuitem>
+
+    <record id="view_data_siswa_graph" model="ir.ui.view">
+        <field name="name">data.siswa.graph</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <graph string="Jumlah Siswa Berdasarkan Jenis Kelamin" type="bar">
+                <field name="jenis_kelamin" type="row"/>
+                <field name="id" type="measure" string="Jumlah Siswa" />
+            </graph>
+        </field>
+    </record>
+
+      <record id="data_siswa_graph_action" model="ir.actions.act_window">
+        <field name="name">Chart Data Siswa Berdasarkan Jenis Kelamin</field>
+        <field name="res_model">data.siswa</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_data_siswa_graph"/>
+    </record>
+        <menuitem id="siswa_menu_chart" name="Chart Data Siswa Berdasarkan Jenis Kelamin" action="data_siswa_graph_action" sequence="10" parent="siswa_menu_root"/>
+
+         <record id="view_data_siswa_graph_asal_sekolah" model="ir.ui.view">
+        <field name="name">data.siswa.graph.asal_sekolah</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <graph string="Jumlah Siswa Berdasarkan Asal Sekolah" type="bar">
+                <field name="asal_sekolah" type="row"/>
+                <field name="id" type="measure" string="Jumlah Siswa" />
+            </graph>
+        </field>
+    </record>
+
+        <record id="data_siswa_graph_asal_sekolah_action" model="ir.actions.act_window">
+        <field name="name">Chart Data Siswa Berdasarkan Asal Sekolah</field>
+        <field name="res_model">data.siswa</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_data_siswa_graph_asal_sekolah"/>
+    </record>
+        <menuitem id="siswa_menu_chart_asal_sekolah" name="Chart Data Siswa Berdasarkan Asal Sekolah" action="data_siswa_graph_asal_sekolah_action" sequence="20" parent="siswa_menu_root"/>
+</odoo>
