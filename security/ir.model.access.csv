@@ -1,2 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_data_siswa,access_data_siswa,model_data_siswa,base.group_user,1,1,1,1
+access_kota_asal,access_kota_asal,model_kota_asal,base.group_user,1,1,1,1
+access_sekolah_asal,access_sekolah_asal,model_sekolah_asal,base.group_user,1,1,1,1

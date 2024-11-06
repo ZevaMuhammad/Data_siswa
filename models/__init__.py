@@ -1,1 +1,1 @@
-from . import data_siswa
+from . import data_siswa, kota_asal, sekolah_asal

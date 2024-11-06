@@ -13,22 +13,20 @@ class DataSiswa(models.Model):
         required=True
     )
     tanggal_lahir = fields.Date(string="Tanggal Lahir")
-    asal_sekolah = fields.Char(string="Asal Sekolah")
+    asals = fields.Many2one("sekolah.asal", string="Asal Sekolah", store=True)
     alamat = fields.Text(string="Alamat")
-    
-    kota_asal = fields.Selection(
-        selection=[("malang", "Malang"), ("luar_kota", "Luar Kota")],
-        string="Kota Asal",
-        required=True
-    )
-    
-    tahun_kelahiran = fields.Char(
-        string="Tahun Kelahiran", compute="_compute_tahun_kelahiran", store=True)
+    asal = fields.Many2one("kota.asal", string="Kota Asal", store=True)
+    umur = fields.Integer(string="Umur", compute="_compute_umur", store=True)
 
     @api.depends('tanggal_lahir')
-    def _compute_tahun_kelahiran(self):
+    def _compute_umur(self):
         for record in self:
             if record.tanggal_lahir:
-                record.tahun_kelahiran = record.tanggal_lahir.strftime('%Y')
+                today = datetime.today()
+                birth_date = fields.Date.from_string(record.tanggal_lahir)
+                age = today.year - birth_date.year
+                if (today.month, today.day) < (birth_date.month, birth_date.day):
+                    age -= 1
+                record.umur = age
             else:
-                record.tahun_kelahiran = ''
+                record.umur = 0 

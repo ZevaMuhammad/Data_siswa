@@ -1,11 +1,11 @@
 {
     'name': "Data siswa",
-    'version': '1.0',
+    'version': '2.0',
     'depends': ['base'],
     'author': "Zeva Muhammad",
     'category': 'App',
     'description': """
-        This module is used to learn basic odoo 17 technical
+        This module is used to learn basic odoo 18 technical
     """,
     'application': True,
 
