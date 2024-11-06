@@ -1,0 +1,50 @@
+<odoo>
+    <record id="data_siswa_dashboard_view" model="ir.ui.view">
+        <field name="name">data.siswa.dashboard</field>
+        <field name="model">data.siswa</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_data_siswa_kanban" create="0">
+                <field name="nama"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="nama"/>
+                                </strong>
+                                <div>
+                                    <field name="nomor_induk"/>
+                                </div>
+                                <div>
+                                    <field name="tanggal_lahir"/>
+                                </div>
+                                <div>
+                                    <field name="umur"/>
+                                </div>
+                                <div>
+                                    <field name="jenis_kelamin"/>
+                                </div>
+                                <div>
+                                    <field name="asal"/>
+                                </div>
+                                <div>
+                                    <field name="alamat"/>
+                                </div>
+                                <div>
+                                    <field name="asals"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_data_siswa_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard Siswa</field>
+        <field name="res_model">data.siswa</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_id" ref="data_siswa_dashboard_view"/>
+    </record>
+</odoo>

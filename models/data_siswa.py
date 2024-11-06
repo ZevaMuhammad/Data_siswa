@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 from datetime import datetime
 
 class DataSiswa(models.Model):
@@ -30,3 +31,9 @@ class DataSiswa(models.Model):
                 record.umur = age
             else:
                 record.umur = 0 
+    
+    @api.constrains('tanggal_lahir')
+    def _check_tanggal_lahir(self):
+        for record in self:
+            if record.tanggal_lahir and record.tanggal_lahir > fields.Date.today():
+                raise ValidationError("Tanggal lahir tidak boleh di masa depan!")

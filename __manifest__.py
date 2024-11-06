@@ -1,6 +1,6 @@
 {
     'name': "Data siswa",
-    'version': '2.0',
+    'version': '3.0',
     'depends': ['base'],
     'author': "Zeva Muhammad",
     'category': 'App',
@@ -11,6 +11,9 @@
 
     'data': [
         'security/ir.model.access.csv',    
-        'views/menu.xml'
-    ]
+        'views/dashboard_view.xml',
+        'views/menu.xml',
+    ],
+    'installable': True,
+    'application': True,
 }

@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="view_data_siswa_list" model="ir.ui.view">
         <field name="name">data.siswa.list</field>
         <field name="model">data.siswa</field>
@@ -7,27 +6,15 @@
             <list>
                 <field name="nomor_induk"/>
                 <field name="nama"/>
-                <field name="jenis_kelamin"/>
                 <field name="tanggal_lahir"/>
-                <field name="asals"/>
-                <field name="alamat"/>
-                <field name="asal"/>
                 <field name="umur"/>
+                <field name="jenis_kelamin"/>
+                <field name="asal"/>
+                <field name="alamat"/>
+                <field name="asals"/>
             </list>
         </field>
     </record>
-
-    <!-- <record id="view_data_siswa_graph" model="ir.ui.view">
-        <field name="name">data.siswa.graph</field>
-        <field name="model">data.siswa</field>
-        <field name="arch" type="xml">
-            <graph string="Siswa Berdasarkan Asal Sekolah dan Tahun Kelahiran" type="bar">
-                <field name="asals" type="row"/>
-                <field name="umur" type="col"/>
-                <field name="id" type="measure"/>
-            </graph>
-        </field>
-    </record> -->
 
     <record id="view_data_siswa_search" model="ir.ui.view">
         <field name="name">data.siswa.search</field>
@@ -52,50 +39,29 @@
         <field name="search_view_id" ref="view_data_siswa_search"/>
     </record>
 
-    <menuitem id="siswa_menu_root" name="Aplikasi Siswa">
-        <menuitem id="siswa_master_data_menu" name="List Data">
-            <menuitem 
-                id="data_siswa_menu_action" 
-                action="data_siswa_action"
-            />
-        </menuitem>
-    </menuitem>
-
-    <!-- <record id="view_data_siswa_graph" model="ir.ui.view">
-        <field name="name">data.siswa.graph</field>
-        <field name="model">data.siswa</field>
-        <field name="arch" type="xml">
-            <graph string="Jumlah Siswa Berdasarkan Jenis Kelamin" type="bar">
-                <field name="jenis_kelamin" type="row"/>
-                <field name="id" type="measure" string="Jumlah Siswa" />
-            </graph>
-        </field>
-    </record>
-
-      <record id="data_siswa_graph_action" model="ir.actions.act_window">
-        <field name="name">Chart Data Siswa Berdasarkan Jenis Kelamin</field>
+    <record id="action_data_siswa_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard Siswa</field>
         <field name="res_model">data.siswa</field>
-        <field name="view_mode">graph</field>
-        <field name="view_id" ref="view_data_siswa_graph"/>
-    </record>
-        <menuitem id="siswa_menu_chart" name="Chart Data Siswa Berdasarkan Jenis Kelamin" action="data_siswa_graph_action" sequence="10" parent="siswa_menu_root"/>
-
-         <record id="view_data_siswa_graph_asals" model="ir.ui.view">
-        <field name="name">data.siswa.graph.asals</field>
-        <field name="model">data.siswa</field>
-        <field name="arch" type="xml">
-            <graph string="Jumlah Siswa Berdasarkan Asal Sekolah" type="bar">
-                <field name="asals" type="row"/>
-                <field name="id" type="measure" string="Jumlah Siswa" />
-            </graph>
-        </field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 
-        <record id="data_siswa_graph_asals_action" model="ir.actions.act_window">
-        <field name="name">Chart Data Siswa Berdasarkan Asal Sekolah</field>
-        <field name="res_model">data.siswa</field>
-        <field name="view_mode">graph</field>
-        <field name="view_id" ref="view_data_siswa_graph_asals"/>
-    </record> -->
-        <!-- <menuitem id="siswa_menu_chart_asals" name="Chart Data Siswa Berdasarkan Asal Sekolah" action="data_siswa_graph_asals_action" sequence="20" parent="siswa_menu_root"/> -->
+    <menuitem id="siswa_menu_root" name="Aplikasi Siswa" sequence="10"/>
+
+    <menuitem id="siswa_master_data_menu" name="List Data" parent="siswa_menu_root" sequence="10"/>
+
+    <menuitem 
+        id="data_siswa_menu_action" 
+        name="Data Siswa"
+        parent="siswa_master_data_menu"
+        action="data_siswa_action"
+        sequence="1"
+    />
+
+    <menuitem 
+        id="menu_data_siswa_dashboard" 
+        name="Dashboard" 
+        parent="siswa_menu_root" 
+        action="action_data_siswa_dashboard" 
+        sequence="1"
+    />
 </odoo>
